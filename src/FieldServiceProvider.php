@@ -1,6 +1,6 @@
 <?php
 
-namespace Naif\SaudiIdNumber;
+namespace SoftWorks\IranianIdNumber;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
