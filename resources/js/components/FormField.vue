@@ -7,7 +7,7 @@
                 :placeholder="field.name"
                 v-model="value"
                 maxlength="10"
-                @blur="checkNationalCode"
+                @blur="checkIdNumber"
             />
 
             <p v-if="hasError" class="my-2 text-danger">
@@ -57,38 +57,9 @@ export default {
           this.value = this.field.value || ''
         },
 
-        checkID() {
-            var id = this.value.trim();
-            if (isNaN(parseInt(id))) {
-                this.hasError = true;
-            }
-            if (id.length !== 10) {
-                this.hasError = true;
-            }
-            var type = id.substr(0, 1);
-            if (type !== '2' && type !== '1') {
-                this.hasError = true;
-            }
-            var sum = 0;
-            for (var i = 0; i < 10; i++) {
-                if (i % 2 === 0) {
-                    var ZFOdd = String('00' + String(Number(id.substr(i, 1)) * 2)).slice(-2);
-                    sum += Number(ZFOdd.substr(0, 1)) + Number(ZFOdd.substr(1, 1));
-                } else {
-                    sum += Number(id.substr(i, 1));
-                }
-            }
-
-            var valid = (sum % 10 !== 0) ? -1 : type;
-            if (valid < 1) {
-                this.hasError = true;
-                return;
-            }
-            this.hasError = false;
-        },
+        checkIdNumber() {
 
 
-        checkNationalCode() {
           var id = this.value.trim();
             if (!/^\d{10}$/.test(id)
                 || id=='0000000000'
@@ -104,6 +75,7 @@ export default {
                 this.hasError = true;
                 return;
               }
+              console.log('checking...');
 
             var check = parseInt(id[9]);
             var sum = 0;
@@ -112,7 +84,7 @@ export default {
                 sum += parseInt(id[i]) * (10 - i);
             }
             sum %= 11;
-            this.hasError = (sum < 2 && check == sum) || (sum >= 2 && check + sum == 11);
+            this.hasError = !((sum < 2 && check == sum) || (sum >= 2 && check + sum == 11));
         },
 
         /**
