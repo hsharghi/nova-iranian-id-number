@@ -1,0 +1,34 @@
+{
+    "name": "hsharghi/nova-iranian-id-number",
+    "type": "library",
+    "description": "Iranian national ID number validation field for laravel nova.",
+    "keywords": [
+        "laravel",
+        "nova",
+        "id_number",
+        "iran",
+        "iranian",
+        "national_code"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SoftWorks\\IranianIdNumber\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SoftWorks\\IranianIdNumber\\FieldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
